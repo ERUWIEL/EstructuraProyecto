@@ -1,1 +1,12 @@
+Estructuras\ArbolBST\Nodo.class
+Exception\EstructuraException.class
+entidades\Estudiante.class
+prueba\Main.class
+entidades\Direccion.class
+entidades\Curso.class
 interfazGrafica\VentanaPrincipal.class
+Estructuras\ListaEnlazadaSimple\ListaEnlazadaSimple.class
+Estructuras\ArbolBST\ArbolBinarioBusqueda.class
+Estructuras\Diccionario\NodoCurso.class
+Estructuras\Diccionario\DiccionarioGenerico.class
+Estructuras\ListaEnlazadaSimple\NodoListaEnlazada.class
