@@ -12,22 +12,34 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Clase principal que gestiona el sistema de registro de estudiantes, cursos,
+ * inscripciones y otros procesos asociados a la gestión académica.
+ * 
+ * Utiliza diversas estructuras de datos como:
+ * - ArbolBinarioBusqueda para almacenar estudiantes.
+ * - DiccionarioGenerico para almacenar cursos.
+ * - ListaEnlazadaSimple para manejar listas relacionadas (aunque no utilizada en su totalidad en este ejemplo).
+ * 
  * @author Sebastian Moreno
  */
 public class Main {
 
-    /**
-     * @param args the command line arguments
-     */
-    static ArbolBinarioBusqueda arbolEstudiantes = new ArbolBinarioBusqueda();
-    static DiccionarioGenerico<String, Curso> diccionarioCursos = new DiccionarioGenerico<>(20);
-    static ListaEnlazadaSimple listaEnlazada = new ListaEnlazadaSimple();
+    // Estructuras de datos globales
+    static ArbolBinarioBusqueda arbolEstudiantes = new ArbolBinarioBusqueda();  // Árbol para almacenar estudiantes
+    static DiccionarioGenerico<String, Curso> diccionarioCursos = new DiccionarioGenerico<>(20);  // Diccionario para cursos
+    static ListaEnlazadaSimple listaEnlazada = new ListaEnlazadaSimple();  // Lista enlazada (por si se utiliza más adelante)
 
+    /**
+     * Método principal que muestra el menú principal y gestiona la interacción con el usuario.
+     * Se mantiene ejecutándose hasta que el usuario seleccione la opción de salir.
+     * 
+     * @param args Argumentos de la línea de comandos
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int opcion;
 
+        // Menú principal con opciones
         do {
             System.out.println("=== MENÚ PRINCIPAL ===");
             System.out.println("1. Estudiantes");
@@ -40,6 +52,7 @@ public class Main {
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
 
+            // Llamada al menú según la opción seleccionada
             switch (opcion) {
                 case 1:
                     menuEstudiantes(scanner);
@@ -70,9 +83,9 @@ public class Main {
         scanner.close();
     }
 
+    // MENÚ DE ESTUDIANTES
     public static void menuEstudiantes(Scanner scanner) {
-
-        System.out.println("\nSelecciona una opcion: ");
+        System.out.println("\nSelecciona una opción: ");
         System.out.println("1. Registrar estudiante");
         System.out.println("2. Buscar estudiante por matrícula");
 
@@ -86,9 +99,9 @@ public class Main {
         } else {
             mostrarEstudiante(scanner, arbolEstudiantes);
         }
-
     }
 
+    // MENÚ DE CURSOS
     public static void menuCursos(Scanner scanner) {
         System.out.println("\nSelecciona una opción: ");
         System.out.println("1. Agregar curso");
@@ -109,6 +122,7 @@ public class Main {
         }
     }
 
+    // MENÚ DE INSCRIPCIONES
     public static void menuInscripciones(Scanner scanner) {
         System.out.println("\nSelecciona una opción: ");
         System.out.println("1. Inscribir estudiante en curso");
@@ -129,22 +143,26 @@ public class Main {
         }
     }
 
+    // MENÚ DE CALIFICACIONES (por implementar)
     public static void menuCalificaciones(Scanner scanner) {
         System.out.println("4.1 Enviar solicitud de calificación (colas)");
         System.out.println("4.2 Procesar siguiente solicitud");
     }
 
+    // MENÚ DE ACCIONES (por implementar)
     public static void menuAcciones(Scanner scanner) {
         System.out.println("5.1 Deshacer última acción");
     }
 
+    // MENÚ DE REPORTES (por implementar)
     public static void menuReportes(Scanner scanner) {
         System.out.println("6.1 Listar estudiantes ordenados por promedio");
         System.out.println("6.2 Rotar rol de tutor/líder de proyecto");
     }
 
-    // METODOS ESPECIFICOS CON FUNCIONALIDAD.
-    //1. Registro de estudiantes
+    // Métodos específicos para la funcionalidad:
+
+    // 1. Registrar estudiante
     public static void registrarEstudiante(Scanner scanner, ArbolBinarioBusqueda arbol) throws EstructuraException {
         scanner.nextLine(); // Limpiar buffer
 
@@ -176,73 +194,64 @@ public class Main {
         Estudiante nuevo = new Estudiante(matricula, nombre, telefono, correo, direccion);
 
         try {
-            arbol.insertar(nuevo);
+            arbol.insertar(nuevo);  // Insertar estudiante en el árbol
         } catch (EstructuraException ex) {
-            throw new EstructuraException("Ocurrio un error registrando un nuevo estudiante." + ex.getLocalizedMessage());
+            throw new EstructuraException("Ocurrió un error registrando un nuevo estudiante." + ex.getLocalizedMessage());
         }
 
         System.out.println("Estudiante registrado exitosamente.");
     }
 
-    //2. Búsqueda de estudiante por matrícula
+    // 2. Buscar estudiante por matrícula
     public static void mostrarEstudiante(Scanner scanner, ArbolBinarioBusqueda arbol) {
         scanner.nextLine();
 
         System.out.print("Ingrese matrícula del estudiante: ");
         String matricula = scanner.nextLine();
 
-        Estudiante estudiante = arbol.buscarPorMatricula(matricula);
+        Estudiante estudiante = arbol.buscarPorMatricula(matricula);  // Buscar estudiante en el árbol
         if (estudiante != null) {
             System.out.println("=== Estudiante encontrado ===");
             System.out.println(estudiante);
-
-            // Si luego agregas calificaciones:
-            // System.out.println("Calificaciones: " + Arrays.toString(estudiante.getCalificaciones()));
         } else {
             System.out.println("Estudiante no encontrado.");
         }
     }
 
-    //3. . Listado de estudiantes ordenados por promedio (PENDIENTE , ESTE SUPONGO SE HACE AL FINAL.)
-    //4. Gestión de catálogo de cursos
+    // 3. Gestionar cursos
     public static void agregarCurso(Scanner scanner, DiccionarioGenerico<String, Curso> diccionarioCursos) {
         System.out.print("Ingrese la clave del curso: ");
         String claveCurso = scanner.nextLine();  // Leer clave del curso
         System.out.print("Ingrese el nombre del curso: ");
         String nombreCurso = scanner.nextLine();  // Leer nombre del curso
-        System.out.println("Ingrese la cantidad maxima permitida de alumnos para el curso:");
-        int capacidad = scanner.nextInt();  // Leer nombre del curso
+        System.out.println("Ingrese la cantidad máxima permitida de alumnos para el curso:");
+        int capacidad = scanner.nextInt();  // Leer capacidad máxima del curso
 
-        // Crear el objeto Curso
-        Curso nuevoCurso = new Curso(claveCurso, nombreCurso, capacidad);
-
-        // Agregar el curso al diccionario
-        diccionarioCursos.agregar(claveCurso, nuevoCurso);
+        Curso nuevoCurso = new Curso(claveCurso, nombreCurso, capacidad);  // Crear nuevo curso
+        diccionarioCursos.agregar(claveCurso, nuevoCurso);  // Agregar curso al diccionario
         System.out.println("Curso agregado con éxito.");
     }
 
+    // Eliminar curso
     public static void eliminarCurso(Scanner scanner, DiccionarioGenerico<String, Curso> diccionarioCursos) {
         System.out.print("Ingrese la clave del curso a eliminar: ");
         String claveCurso = scanner.nextLine();  // Leer la clave del curso
 
-        // Eliminar el curso del diccionario
-        diccionarioCursos.eliminar(claveCurso);
+        diccionarioCursos.eliminar(claveCurso);  // Eliminar el curso del diccionario
     }
 
+    // Listar cursos
     public static void listarCursos(DiccionarioGenerico<String, Curso> diccionarioCursos) {
         System.out.println("Listado de todos los cursos registrados:");
-
-        // Mostrar todos los cursos
-        diccionarioCursos.mostrar();
+        diccionarioCursos.mostrar();  // Mostrar todos los cursos en el diccionario
     }
 
-    //5.Inscripción de estudiantes en cursos
+    // Inscribir estudiante en curso
     public static void inscribirEstudianteACurso(Scanner scanner) {
-
         System.out.print("Ingrese matrícula del estudiante: ");
         String matricula = scanner.nextLine();
 
-        Estudiante estudiante = arbolEstudiantes.buscarPorMatricula(matricula);
+        Estudiante estudiante = arbolEstudiantes.buscarPorMatricula(matricula);  // Buscar estudiante
         if (estudiante == null) {
             System.out.println("Estudiante no encontrado.");
             return;
@@ -251,40 +260,42 @@ public class Main {
         System.out.print("Ingrese la clave del curso: ");
         String claveCurso = scanner.nextLine();
 
-        Curso curso = diccionarioCursos.obtener(claveCurso);
+        Curso curso = diccionarioCursos.obtener(claveCurso);  // Buscar curso
         if (curso == null) {
             System.out.println("Curso no encontrado.");
             return;
         }
 
         if (curso.hayCupo()) {
-            curso.inscribirEstudiante(estudiante);
+            curso.inscribirEstudiante(estudiante);  // Inscribir estudiante si hay cupo
         } else {
-            curso.inscribirEstudiante(estudiante);
+            curso.inscribirEstudiante(estudiante);  // Agregar estudiante a lista de espera si no hay cupo
         }
     }
 
+    // Mostrar lista de inscritos
     public static void mostrarListaInscritos(Scanner scanner) {
         System.out.print("Ingrese la clave del curso: ");
         String clave = scanner.nextLine();
 
-        Curso curso = diccionarioCursos.obtener(clave);
+        Curso curso = diccionarioCursos.obtener(clave);  // Obtener curso por clave
         if (curso != null) {
             System.out.println("Estudiantes inscritos:");
-            curso.mostrarInscritos();  // Este método debe imprimir los elementos de la lista
+            curso.mostrarInscritos();  // Mostrar la lista de inscritos
         } else {
             System.out.println("Curso no encontrado.");
         }
     }
 
+    // Mostrar lista de espera
     public static void mostrarListaEspera(Scanner scanner) {
         System.out.print("Ingrese la clave del curso: ");
         String clave = scanner.nextLine();
 
-        Curso curso = diccionarioCursos.obtener(clave);
+        Curso curso = diccionarioCursos.obtener(clave);  // Obtener curso por clave
         if (curso != null) {
             System.out.println("Lista de espera:");
-            curso.mostrarListaEspera();  // Este método también debe existir en tu lista
+            curso.mostrarListaEspera();  // Mostrar la lista de espera
         } else {
             System.out.println("Curso no encontrado.");
         }
