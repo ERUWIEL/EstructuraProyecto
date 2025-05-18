@@ -1,4 +1,4 @@
-package main.java.Estructuras.ListaEnlazadaCircular;
+package Estructuras.ListaEnlazadaCircular;
 /**
  * Esta clase representa una lista enlazada circular doble.
  *
