@@ -25,6 +25,8 @@ public class Estudiante {
 
     /** Dirección del estudiante. */
     private Direccion direccion;
+    
+    private boolean esLider;
 
     /**
      * Constructor vacío para inicialización manual o frameworks que lo requieran.
@@ -99,6 +101,16 @@ public class Estudiante {
         this.direccion = direccion;
     }
 
+    public boolean isEsLider() {
+        return esLider;
+    }
+
+    public void setEsLider(boolean esLider) {
+        this.esLider = esLider;
+    }
+
+    
+    
     /**
      * Retorna una representación en cadena del estudiante, incluyendo todos sus datos.
      * 

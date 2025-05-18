@@ -1,10 +1,12 @@
 package Estructuras.ListaEnlazadaCircular;
+
 /**
- *Esta clase representa una lista enlazada circular simple
+ * Esta clase representa una lista enlazada circular simple
  *
  * @author Luis Valenzuela
- */ 
+ */
 public class CircularSimple<T> {
+
     private NodoCircularSimple<T> cabeza;
     private NodoCircularSimple<T> cola;
     private int size;
@@ -14,6 +16,7 @@ public class CircularSimple<T> {
         this.cola = null;
         this.size = 0;
     }
+
     public void agregar(T dato) {
         NodoCircularSimple<T> nuevoNodo = new NodoCircularSimple<>(dato);
         if (cabeza == null) {
@@ -27,6 +30,7 @@ public class CircularSimple<T> {
         }
         size++;
     }
+
     public void eliminar(T dato) {
         if (cabeza == null) {
             return; // Lista vacía
@@ -62,5 +66,46 @@ public class CircularSimple<T> {
             actual = actual.getSiguiente();
         }
     }
-}
 
+    public void mostrar() {
+        if (cabeza == null) {
+            System.out.println("Lista vacía");
+            return;
+        }
+        NodoCircularSimple<T> actual = cabeza;
+        boolean primeraVuelta = true;
+        while (actual != cabeza || primeraVuelta) {
+            primeraVuelta = false;
+            System.out.print(actual.getDato() + " ");
+            actual = actual.getSiguiente();
+        }
+        System.out.println();
+    }
+
+    public NodoCircularSimple<T> getCabeza() {
+        return cabeza;
+    }
+
+    public void setCabeza(NodoCircularSimple<T> cabeza) {
+        this.cabeza = cabeza;
+    }
+
+    public NodoCircularSimple<T> getCola() {
+        return cola;
+    }
+
+    public void setCola(NodoCircularSimple<T> cola) {
+        this.cola = cola;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+    
+    
+    
+}
