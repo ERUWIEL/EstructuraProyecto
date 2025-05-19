@@ -155,12 +155,11 @@ public class Estudiante {
      */
     @Override
     public String toString() {
-        return "Estudiante{" +
+        return 
                 "matricula=" + matricula +
                 ", nombreCompleto=" + nombreCompleto +
                 ", telefono=" + telefono +
                 ", correoElectronico=" + correoElectronico +
-                ", direccion=" + direccion +
-                '}';
+                ", direccion=" + direccion;
     }
 }
