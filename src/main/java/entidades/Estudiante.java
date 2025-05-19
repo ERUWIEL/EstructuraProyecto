@@ -1,5 +1,7 @@
 package entidades;
 
+import java.util.ArrayList;
+
 /**
  * Clase que representa a un estudiante dentro del sistema.
  * Cada estudiante cuenta con una matrícula, nombre completo, teléfono, correo electrónico y una dirección.
@@ -27,6 +29,8 @@ public class Estudiante {
     private Direccion direccion;
     
     private boolean esLider;
+    
+    private ArrayList<Double> calificaciones = new ArrayList<>(); // Agregado para manejar calificaciones
 
     /**
      * Constructor vacío para inicialización manual o frameworks que lo requieran.
@@ -109,7 +113,29 @@ public class Estudiante {
         this.esLider = esLider;
     }
 
+    public ArrayList<Double> getCalificaciones() {
+        return calificaciones;
+    }
     
+    public double getCalificacion(int indice) {
+        if (indice < 0 || indice >= calificaciones.size()) {
+            throw new IndexOutOfBoundsException("Índice fuera de rango");
+        }
+        return calificaciones.get(indice);
+    }
+    
+
+    public void setCalificaciones(ArrayList<Double> calificaciones) {
+        this.calificaciones = calificaciones;
+    }
+    
+    public void actualizarCalificacion(int indice, double nuevaCalificacion) {
+        // Si el índice es válido, actualiza; si no, agrega calificaciones hasta llegar al índice
+        while (calificaciones.size() <= indice) {
+            calificaciones.add(0.0); // O el valor por defecto que prefieras
+        }
+        calificaciones.set(indice, nuevaCalificacion);
+    }
     
     /**
      * Retorna una representación en cadena del estudiante, incluyendo todos sus datos.

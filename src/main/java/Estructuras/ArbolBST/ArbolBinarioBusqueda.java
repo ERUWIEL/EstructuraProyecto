@@ -25,6 +25,11 @@ public class ArbolBinarioBusqueda {
     public void insertar(Estudiante estudiante) throws EstructuraException {
         raiz = insertarEstudiante(raiz, estudiante);
     }
+    
+    public void eliminar(Estudiante estudiante){
+        this.raiz=eliminarEstudiante(this.raiz, estudiante);
+    }
+    
 
     /**
      * Busca un estudiante en el árbol usando su matrícula.
@@ -74,6 +79,51 @@ public class ArbolBinarioBusqueda {
             actual.derecha = insertarEstudiante(actual.derecha, estudiante);
         }
         return actual;
+    }
+    
+    /**
+     * Elimina un estudiante del árbol usando su matrícula.
+     * 
+     * @param nodo Nodo actual en el recorrido.
+     * @param estudiante Estudiante a eliminar.
+     * @return Nodo actualizado después de la eliminación.
+     */
+    private Nodo eliminarEstudiante(Nodo nodo, Estudiante estudiante) {
+        if (nodo == null) {
+            return null;
+        }
+        int comparacion = estudiante.getMatricula().compareTo(nodo.estudiante.getMatricula());
+        if (comparacion < 0) {
+            nodo.izquierda = eliminarEstudiante(nodo.izquierda, estudiante);
+        } else if (comparacion > 0) {
+            nodo.derecha = eliminarEstudiante(nodo.derecha, estudiante);
+        } else {
+            // Nodo encontrado
+            if (nodo.izquierda == null) {
+                return nodo.derecha;
+            } else if (nodo.derecha == null) {
+                return nodo.izquierda;
+            } else {
+                // Nodo con dos hijos: buscar el sucesor in-order
+                Nodo sucesor = encontrarMinimo(nodo.derecha);
+                nodo.estudiante = sucesor.estudiante;
+                nodo.derecha = eliminarEstudiante(nodo.derecha, sucesor.estudiante);
+            }
+        }
+        return nodo;
+    }
+
+    /**
+     * Encuentra el nodo con el valor mínimo en el subárbol dado.
+     * 
+     * @param nodo Nodo raíz del subárbol.
+     * @return Nodo con el valor mínimo.
+     */
+    private Nodo encontrarMinimo(Nodo nodo) {
+        while (nodo.izquierda != null) {
+            nodo = nodo.izquierda;
+        }
+        return nodo;
     }
 
     /**

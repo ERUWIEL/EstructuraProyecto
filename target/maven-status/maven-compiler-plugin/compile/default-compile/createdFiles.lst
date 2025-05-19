@@ -1,4 +1,5 @@
 Estructuras\Pila\NodoPila.class
+entidades\Accion$Tipo.class
 prueba\Main.class
 Estructuras\Cola\ColaGenerica.class
 Estructuras\ListaEnlazadaCircular\CircularSimple.class
@@ -12,9 +13,12 @@ Estructuras\ArbolBST\Nodo.class
 Exception\EstructuraException.class
 entidades\Estudiante.class
 entidades\Direccion.class
+prueba\Main$1.class
 Estructuras\Pila\PilaGenerica.class
 entidades\Curso.class
 interfazGrafica\VentanaPrincipal.class
 Estructuras\ListaEnlazadaSimple\ListaEnlazadaSimple.class
+entidades\SolicitudCalificacion.class
 Estructuras\Cola\NodoCola.class
 Estructuras\ListaEnlazadaCircular\NodoCircularSimple.class
+entidades\Accion.class

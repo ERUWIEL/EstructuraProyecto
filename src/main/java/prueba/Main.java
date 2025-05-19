@@ -1,15 +1,21 @@
 package prueba;
 
 import Estructuras.ArbolBST.ArbolBinarioBusqueda;
+import Estructuras.Cola.ColaGenerica;
 import Estructuras.Diccionario.DiccionarioGenerico;
 import Estructuras.ListaEnlazadaCircular.CircularDoble;
 import Estructuras.ListaEnlazadaCircular.CircularSimple;
 import Estructuras.ListaEnlazadaCircular.NodoCircularSimple;
 import Estructuras.ListaEnlazadaSimple.ListaEnlazadaSimple;
+import Estructuras.Pila.PilaGenerica;
 import Exception.EstructuraException;
+import entidades.Accion;
 import entidades.Curso;
 import entidades.Direccion;
 import entidades.Estudiante;
+import entidades.SolicitudCalificacion;
+import entidades.SolicitudCalificacion;
+
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,9 +34,14 @@ import java.util.logging.Logger;
 public class Main {
 
     // Estructuras de datos globales
-    static ArbolBinarioBusqueda arbolEstudiantes = new ArbolBinarioBusqueda();  // Árbol para almacenar estudiantes
-    static DiccionarioGenerico<String, Curso> diccionarioCursos = new DiccionarioGenerico<>(20);  // Diccionario para cursos
-    static ListaEnlazadaSimple listaEnlazada = new ListaEnlazadaSimple();  // Lista enlazada (por si se utiliza más adelante)
+    static ArbolBinarioBusqueda arbolEstudiantes = new ArbolBinarioBusqueda(); // Árbol para almacenar estudiantes
+    static DiccionarioGenerico<String, Curso> diccionarioCursos = new DiccionarioGenerico<>(20); // Diccionario para
+                                                                                                 // cursos
+    static ListaEnlazadaSimple listaEnlazada = new ListaEnlazadaSimple(); // Lista enlazada (por si se utiliza más
+                                                                          // adelante)
+    static ColaGenerica<SolicitudCalificacion> colaSolicitudes = new ColaGenerica<>();
+
+    static PilaGenerica<Accion> pilaAcciones = new PilaGenerica<>();
 
     /**
      * Método principal que muestra el menú principal y gestiona la interacción
@@ -40,6 +51,34 @@ public class Main {
      * @param args Argumentos de la línea de comandos
      */
     public static void main(String[] args) {
+
+        // Crear 3 estudiantes de ejemplo
+        Direccion dir1 = new Direccion("Calle 1", "123", "Centro", "CiudadA");
+        Direccion dir2 = new Direccion("Calle 2", "456", "Norte", "CiudadB");
+        Direccion dir3 = new Direccion("Calle 3", "789", "Sur", "CiudadC");
+
+        Estudiante est1 = new Estudiante("111", "Juan Pérez", "6621234567", "juan@mail.com", dir1);
+        Estudiante est2 = new Estudiante("222", "Ana López", "6622345678", "ana@mail.com", dir2);
+        Estudiante est3 = new Estudiante("333", "Luis Ruiz", "6623456789", "luis@mail.com", dir3);
+
+        // Insertar los estudiantes en el árbol global
+        try {
+            arbolEstudiantes.insertar(est1);
+            arbolEstudiantes.insertar(est2);
+            arbolEstudiantes.insertar(est3);
+        } catch (EstructuraException ex) {
+            System.out.println("Error al insertar estudiantes de ejemplo: " + ex.getMessage());
+        }
+
+        // Crear un curso de ejemplo
+        Curso cursoEjemplo = new Curso("111", "Estructura de Datos", 30);
+        diccionarioCursos.agregar("111", cursoEjemplo);
+
+        // Inscribir a los 3 estudiantes en el curso
+        cursoEjemplo.inscribirEstudiante(est1);
+        cursoEjemplo.inscribirEstudiante(est2);
+        cursoEjemplo.inscribirEstudiante(est3);
+
         Scanner scanner = new Scanner(System.in);
         int opcion;
 
@@ -113,14 +152,14 @@ public class Main {
         System.out.println("3. Listar cursos");
 
         int opcion = scanner.nextInt();
-        scanner.nextLine();  // Limpiar el buffer
+        scanner.nextLine(); // Limpiar el buffer
 
         if (opcion == 1) {
-            agregarCurso(scanner, diccionarioCursos);  // Llamar al método para agregar curso
+            agregarCurso(scanner, diccionarioCursos); // Llamar al método para agregar curso
         } else if (opcion == 2) {
-            eliminarCurso(scanner, diccionarioCursos);  // Llamar al método para eliminar curso
+            eliminarCurso(scanner, diccionarioCursos); // Llamar al método para eliminar curso
         } else if (opcion == 3) {
-            listarCursos(diccionarioCursos);  // Llamar al método para listar cursos
+            listarCursos(diccionarioCursos); // Llamar al método para listar cursos
         } else {
             System.out.println("Selecciona una opción correcta");
         }
@@ -134,10 +173,10 @@ public class Main {
         System.out.println("3. Mostrar lista de espera de un curso");
 
         int opcion = scanner.nextInt();
-        scanner.nextLine();  // Limpiar el buffer
+        scanner.nextLine(); // Limpiar el buffer
 
         if (opcion == 1) {
-            inscribirEstudianteACurso(scanner);  // Llamar al método para agregar curso
+            inscribirEstudianteACurso(scanner); // Llamar al método para agregar curso
         } else if (opcion == 2) {
             mostrarListaInscritos(scanner);
         } else if (opcion == 3) {
@@ -147,15 +186,31 @@ public class Main {
         }
     }
 
-    // MENÚ DE CALIFICACIONES (por implementar)
+    // MENÚ DE CALIFICACIONES
     public static void menuCalificaciones(Scanner scanner) {
-        System.out.println("4.1 Enviar solicitud de calificación (colas)");
-        System.out.println("4.2 Procesar siguiente solicitud");
+        System.out.println("1. Enviar solicitud de calificación");
+        System.out.println("2. Procesar siguiente solicitud");
+        int opcion = scanner.nextInt();
+        scanner.nextLine(); // Limpiar buffer
+
+        if (opcion == 1) {
+            enviarSolicitudCalificacion(scanner);
+        } else if (opcion == 2) {
+            procesarSiguienteSolicitud();
+        } else {
+            System.out.println("Opción inválida.");
+        }
     }
 
     // MENÚ DE ACCIONES (por implementar)
     public static void menuAcciones(Scanner scanner) {
-        System.out.println("5.1 Deshacer última acción");
+        System.out.println("1 Deshacer última acción");
+        int opcion = scanner.nextInt();
+        if (opcion == 1) {
+            deshacerUltimaAccion();
+        } else {
+            System.out.println("Selecciona una opción correcta");
+        }
     }
 
     // MENÚ DE REPORTES (por implementar)
@@ -163,10 +218,10 @@ public class Main {
         System.out.println("1. Listar estudiantes ordenados por promedio");
         System.out.println("2. Rotar rol de tutor/líder de proyecto");
         int opcion = scanner.nextInt();
-        scanner.nextLine();  // Limpiar el buffer
+        scanner.nextLine(); // Limpiar el buffer
 
         if (opcion == 1) {
-            inscribirEstudianteACurso(scanner);  // Llamar al método para agregar curso
+            inscribirEstudianteACurso(scanner); // Llamar al método para agregar curso
         } else if (opcion == 2) {
             rotarRol(scanner);
         } else if (opcion == 3) {
@@ -210,9 +265,14 @@ public class Main {
         Estudiante nuevo = new Estudiante(matricula, nombre, telefono, correo, direccion);
 
         try {
-            arbol.insertar(nuevo);  // Insertar estudiante en el árbol
+            arbol.insertar(nuevo); // Insertar estudiante en el árbol
+
+            // Registrar la acción en la pila
+            Accion accion = new Accion(Accion.Tipo.REGISTRO, null, nuevo);
+            pilaAcciones.apilar(accion);
         } catch (EstructuraException ex) {
-            throw new EstructuraException("Ocurrió un error registrando un nuevo estudiante." + ex.getLocalizedMessage());
+            throw new EstructuraException(
+                    "Ocurrió un error registrando un nuevo estudiante." + ex.getLocalizedMessage());
         }
 
         System.out.println("Estudiante registrado exitosamente.");
@@ -225,7 +285,7 @@ public class Main {
         System.out.print("Ingrese matrícula del estudiante: ");
         String matricula = scanner.nextLine();
 
-        Estudiante estudiante = arbol.buscarPorMatricula(matricula);  // Buscar estudiante en el árbol
+        Estudiante estudiante = arbol.buscarPorMatricula(matricula); // Buscar estudiante en el árbol
         if (estudiante != null) {
             System.out.println("=== Estudiante encontrado ===");
             System.out.println(estudiante);
@@ -237,29 +297,29 @@ public class Main {
     // 3. Gestionar cursos
     public static void agregarCurso(Scanner scanner, DiccionarioGenerico<String, Curso> diccionarioCursos) {
         System.out.print("Ingrese la clave del curso: ");
-        String claveCurso = scanner.nextLine();  // Leer clave del curso
+        String claveCurso = scanner.nextLine(); // Leer clave del curso
         System.out.print("Ingrese el nombre del curso: ");
-        String nombreCurso = scanner.nextLine();  // Leer nombre del curso
+        String nombreCurso = scanner.nextLine(); // Leer nombre del curso
         System.out.println("Ingrese la cantidad máxima permitida de alumnos para el curso:");
-        int capacidad = scanner.nextInt();  // Leer capacidad máxima del curso
+        int capacidad = scanner.nextInt(); // Leer capacidad máxima del curso
 
-        Curso nuevoCurso = new Curso(claveCurso, nombreCurso, capacidad);  // Crear nuevo curso
-        diccionarioCursos.agregar(claveCurso, nuevoCurso);  // Agregar curso al diccionario
+        Curso nuevoCurso = new Curso(claveCurso, nombreCurso, capacidad); // Crear nuevo curso
+        diccionarioCursos.agregar(claveCurso, nuevoCurso); // Agregar curso al diccionario
         System.out.println("Curso agregado con éxito.");
     }
 
     // Eliminar curso
     public static void eliminarCurso(Scanner scanner, DiccionarioGenerico<String, Curso> diccionarioCursos) {
         System.out.print("Ingrese la clave del curso a eliminar: ");
-        String claveCurso = scanner.nextLine();  // Leer la clave del curso
+        String claveCurso = scanner.nextLine(); // Leer la clave del curso
 
-        diccionarioCursos.eliminar(claveCurso);  // Eliminar el curso del diccionario
+        diccionarioCursos.eliminar(claveCurso); // Eliminar el curso del diccionario
     }
 
     // Listar cursos
     public static void listarCursos(DiccionarioGenerico<String, Curso> diccionarioCursos) {
         System.out.println("Listado de todos los cursos registrados:");
-        diccionarioCursos.mostrar();  // Mostrar todos los cursos en el diccionario
+        diccionarioCursos.mostrar(); // Mostrar todos los cursos en el diccionario
     }
 
     // Inscribir estudiante en curso
@@ -267,7 +327,7 @@ public class Main {
         System.out.print("Ingrese matrícula del estudiante: ");
         String matricula = scanner.nextLine();
 
-        Estudiante estudiante = arbolEstudiantes.buscarPorMatricula(matricula);  // Buscar estudiante
+        Estudiante estudiante = arbolEstudiantes.buscarPorMatricula(matricula); // Buscar estudiante
         if (estudiante == null) {
             System.out.println("Estudiante no encontrado.");
             return;
@@ -276,16 +336,19 @@ public class Main {
         System.out.print("Ingrese la clave del curso: ");
         String claveCurso = scanner.nextLine();
 
-        Curso curso = diccionarioCursos.obtener(claveCurso);  // Buscar curso
+        Curso curso = diccionarioCursos.obtener(claveCurso); // Buscar curso
         if (curso == null) {
             System.out.println("Curso no encontrado.");
             return;
         }
 
         if (curso.hayCupo()) {
-            curso.inscribirEstudiante(estudiante);  // Inscribir estudiante si hay cupo
+            // Antes de inscribir
+            Accion accion = new Accion(Accion.Tipo.INSCRIPCION, null, estudiante);
+            pilaAcciones.apilar(accion);
+            curso.inscribirEstudiante(estudiante); // Inscribir estudiante si hay cupo
         } else {
-            curso.inscribirEstudiante(estudiante);  // Agregar estudiante a lista de espera si no hay cupo
+            curso.inscribirEstudiante(estudiante); // Agregar estudiante a lista de espera si no hay cupo
         }
     }
 
@@ -294,10 +357,10 @@ public class Main {
         System.out.print("Ingrese la clave del curso: ");
         String clave = scanner.nextLine();
 
-        Curso curso = diccionarioCursos.obtener(clave);  // Obtener curso por clave
+        Curso curso = diccionarioCursos.obtener(clave); // Obtener curso por clave
         if (curso != null) {
             System.out.println("Estudiantes inscritos:");
-            curso.mostrarInscritos();  // Mostrar la lista de inscritos
+            curso.mostrarInscritos(); // Mostrar la lista de inscritos
         } else {
             System.out.println("Curso no encontrado.");
         }
@@ -308,16 +371,16 @@ public class Main {
         System.out.print("Ingrese la clave del curso: ");
         String clave = scanner.nextLine();
 
-        Curso curso = diccionarioCursos.obtener(clave);  // Obtener curso por clave
+        Curso curso = diccionarioCursos.obtener(clave); // Obtener curso por clave
         if (curso != null) {
             System.out.println("Lista de espera:");
-            curso.mostrarListaEspera();  // Mostrar la lista de espera
+            curso.mostrarListaEspera(); // Mostrar la lista de espera
         } else {
             System.out.println("Curso no encontrado.");
         }
     }
 
-    // Metodo para rotar el rol en la clase 
+    // Metodo para rotar el rol en la clase
     public static void rotarRol(Scanner scanner) {
         System.out.print("Ingrese la clave del curso: ");
         String clave = scanner.nextLine();
@@ -354,6 +417,90 @@ public class Main {
         // Si no había ningún líder asignado, puedes decidir asignárselo al primero
         // Esto depende de tus reglas de negocio
         System.out.println("No se encontró un estudiante con rol de líder.");
+    }
+
+    // Enviar solicitud de calificación
+    public static void enviarSolicitudCalificacion(Scanner scanner) {
+        System.out.print("Matrícula del estudiante: ");
+        String matricula = scanner.nextLine();
+        System.out.print("Índice de la calificación a modificar: ");
+        int indice = scanner.nextInt();
+        System.out.print("Nueva calificación: ");
+        double calificacion = scanner.nextDouble();
+        scanner.nextLine(); // Limpiar buffer
+
+        SolicitudCalificacion solicitud = new SolicitudCalificacion(matricula, indice, calificacion);
+        colaSolicitudes.encolar(solicitud);
+        System.out.println("Solicitud agregada a la lista de espera.");
+    }
+
+    // Procesar siguiente solicitud
+    public static void procesarSiguienteSolicitud() {
+        if (colaSolicitudes.estaVacia()) {
+            System.out.println("No hay solicitudes en espera.");
+            return;
+        }
+
+        SolicitudCalificacion solicitud = colaSolicitudes.desencolar();
+        Estudiante estudiante = arbolEstudiantes.buscarPorMatricula(solicitud.getMatriculaEstudiante());
+        if (estudiante != null) {
+            double calificacionAnterior;
+            if (solicitud.getIndiceCalificacion() < estudiante.getCalificaciones().size()) {
+                calificacionAnterior = estudiante.getCalificacion(solicitud.getIndiceCalificacion());
+            } else {
+                calificacionAnterior = 0.0;
+            }
+            Accion accion = new Accion(Accion.Tipo.CALIFICACION, calificacionAnterior, solicitud);
+            pilaAcciones.apilar(accion);
+            estudiante.actualizarCalificacion(solicitud.getIndiceCalificacion(), solicitud.getNuevaCalificacion());
+            System.out.println("Calificación actualizada para el estudiante: " + estudiante.getNombreCompleto());
+            System.out.println("Calificaciones actuales: " + estudiante.getCalificaciones());
+        } else {
+            System.out.println("Estudiante no encontrado.");
+        }
+    }
+
+    public static void deshacerUltimaAccion() {
+        if (pilaAcciones.esVacia()) {
+            System.out.println("No hay acciones para deshacer.");
+            return;
+        }
+        Accion accion = pilaAcciones.desapilar();
+        switch (accion.getTipo()) {
+            case REGISTRO:
+                Estudiante estudiante = (Estudiante) accion.getDatoActual();
+                arbolEstudiantes.eliminar(estudiante);
+                System.out.println("Registro deshecho: estudiante eliminado (" + estudiante.getNombreCompleto() + ")");
+                break;
+            case INSCRIPCION:
+                // Eliminar inscripción
+                Estudiante estudiant = (Estudiante) accion.getDatoActual();
+                // Aquí debes buscar el curso correspondiente y eliminar al estudiante
+                // curso.eliminarInscripcion(estudiante);
+                System.out.println("Inscripción deshecha para: " + estudiant.getNombreCompleto());
+                break;
+            case CALIFICACION:
+                // Restaurar calificación previa
+                // datoAnterior: calificación anterior (Double)
+                // datoActual: objeto SolicitudCalificacion o datos para identificar estudiante
+                // e índice
+                if (accion.getDatoActual() instanceof SolicitudCalificacion) {
+                    SolicitudCalificacion solicitud = (SolicitudCalificacion) accion.getDatoActual();
+                    Estudiante est = arbolEstudiantes.buscarPorMatricula(solicitud.getMatriculaEstudiante());
+                    if (est != null) {
+                        est.actualizarCalificacion(solicitud.getIndiceCalificacion(),
+                                (Double) accion.getDatoAnterior());
+                        System.out.println("Calificación restaurada para el estudiante: " + est.getNombreCompleto());
+                    } else {
+                        System.out.println("No se encontró el estudiante para restaurar la calificación.");
+                    }
+                } else {
+                    System.out.println("No se pudo restaurar la calificación (información insuficiente).");
+                }
+                break;
+            default:
+                System.out.println("Tipo de acción no soportado para deshacer.");
+        }
     }
 
 }
