@@ -146,4 +146,9 @@ public class ArbolBinarioBusqueda {
             inOrdenRec(nodo.derecha);
         }
     }
+
+    public Nodo getRaiz() {
+        return raiz;
+    }
+   
 }

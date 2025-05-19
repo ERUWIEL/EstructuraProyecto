@@ -137,6 +137,17 @@ public class Estudiante {
         calificaciones.set(indice, nuevaCalificacion);
     }
     
+    public double calcularPromedioRecursivo() {
+        return calcularPromedioRecursivo(0, 0.0);
+    }
+
+    private double calcularPromedioRecursivo(int indice, double suma) {
+        if (indice >= calificaciones.size() || calificaciones.size() == 0) {
+            return calificaciones.size() == 0 ? 0.0 : suma / calificaciones.size();
+        }
+        return calcularPromedioRecursivo(indice + 1, suma + calificaciones.get(indice));
+    }
+    
     /**
      * Retorna una representación en cadena del estudiante, incluyendo todos sus datos.
      * 

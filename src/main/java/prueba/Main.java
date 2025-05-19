@@ -1,5 +1,6 @@
 package prueba;
 
+import Estructuras.ArbolAVL.ArbolAVL;
 import Estructuras.ArbolBST.ArbolBinarioBusqueda;
 import Estructuras.Cola.ColaGenerica;
 import Estructuras.Diccionario.DiccionarioGenerico;
@@ -66,6 +67,18 @@ public class Main {
             arbolEstudiantes.insertar(est1);
             arbolEstudiantes.insertar(est2);
             arbolEstudiantes.insertar(est3);
+
+            est1.actualizarCalificacion(0, 8.5);
+            est1.actualizarCalificacion(1, 9.0);
+            est1.actualizarCalificacion(2, 7.5);
+
+            est2.actualizarCalificacion(0, 7.0);
+            est2.actualizarCalificacion(1, 8.0);
+            est2.actualizarCalificacion(2, 8.5);
+
+            est3.actualizarCalificacion(0, 9.5);
+            est3.actualizarCalificacion(1, 9.0);
+            est3.actualizarCalificacion(2, 8.0);
         } catch (EstructuraException ex) {
             System.out.println("Error al insertar estudiantes de ejemplo: " + ex.getMessage());
         }
@@ -188,6 +201,7 @@ public class Main {
 
     // MENÚ DE CALIFICACIONES
     public static void menuCalificaciones(Scanner scanner) {
+        System.out.println("\nSelecciona una opción: ");
         System.out.println("1. Enviar solicitud de calificación");
         System.out.println("2. Procesar siguiente solicitud");
         int opcion = scanner.nextInt();
@@ -204,7 +218,8 @@ public class Main {
 
     // MENÚ DE ACCIONES (por implementar)
     public static void menuAcciones(Scanner scanner) {
-        System.out.println("1 Deshacer última acción");
+        System.out.println("\nSelecciona una opción: ");
+        System.out.println("1. Deshacer última acción");
         int opcion = scanner.nextInt();
         if (opcion == 1) {
             deshacerUltimaAccion();
@@ -215,17 +230,16 @@ public class Main {
 
     // MENÚ DE REPORTES (por implementar)
     public static void menuReportes(Scanner scanner) {
+        System.out.println("\nSelecciona una opción: ");
         System.out.println("1. Listar estudiantes ordenados por promedio");
         System.out.println("2. Rotar rol de tutor/líder de proyecto");
         int opcion = scanner.nextInt();
         scanner.nextLine(); // Limpiar el buffer
 
         if (opcion == 1) {
-            inscribirEstudianteACurso(scanner); // Llamar al método para agregar curso
+            reportePromedios(); // Llamar al método para agregar curso
         } else if (opcion == 2) {
             rotarRol(scanner);
-        } else if (opcion == 3) {
-            mostrarListaEspera(scanner);
         } else {
             System.out.println("Selecciona una opción correcta");
         }
@@ -503,4 +517,39 @@ public class Main {
         }
     }
 
+    public static void reportePromedios() {
+        ArbolAVL avl = new ArbolAVL();
+        recorrerEInsertarPromedios(arbolEstudiantes.getRaiz(), avl);
+        System.out.println("Estudiantes ordenados por promedio:");
+        avl.imprimirInOrden();
+    }
+
+    private static void recorrerEInsertarPromedios(Object nodo, ArbolAVL avl) {
+        if (nodo == null)
+            return;
+        // Suponiendo que tu nodo del árbol binario tiene los campos: estudiante,
+        // izquierda, derecha
+        try {
+            java.lang.reflect.Field estudianteField = nodo.getClass().getDeclaredField("estudiante");
+            estudianteField.setAccessible(true);
+            Estudiante estudiante = (Estudiante) estudianteField.get(nodo);
+
+            java.lang.reflect.Field izqField = nodo.getClass().getDeclaredField("izquierda");
+            izqField.setAccessible(true);
+            Object izq = izqField.get(nodo);
+
+            java.lang.reflect.Field derField = nodo.getClass().getDeclaredField("derecha");
+            derField.setAccessible(true);
+            Object der = derField.get(nodo);
+
+            if (estudiante != null) {
+                double promedio = estudiante.calcularPromedioRecursivo();
+                avl.insertar(promedio, estudiante);
+            }
+            recorrerEInsertarPromedios(izq, avl);
+            recorrerEInsertarPromedios(der, avl);
+        } catch (Exception e) {
+            // Manejo simple de error de reflexión
+        }
+    }
 }
