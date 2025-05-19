@@ -4,6 +4,8 @@
  */
 package gui;
 
+import interfaces.RegistroFachada;
+
 /**
  *
  * @author Sebastian Moreno
@@ -15,6 +17,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
      */
     
     Aplicacion app;
+    RegistroFachada r = new RegistroFachada();
     public MenuPrincipal(Aplicacion app) {
         this.app = app;
         initComponents();
@@ -59,6 +62,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Salir");
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
@@ -66,7 +70,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
         });
         panelRound2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 220, 50));
 
-        add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 600, 270, 70));
+        add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 560, 270, 70));
 
         jLabel1.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -84,6 +88,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Estudiantes");
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
@@ -125,6 +130,12 @@ public class MenuPrincipal extends javax.swing.JPanel {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Inscripciones");
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
         panelRound5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 12, 290, 50));
 
         add(panelRound5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, 330, 70));
@@ -140,6 +151,12 @@ public class MenuPrincipal extends javax.swing.JPanel {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Calificaciones");
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
         panelRound6.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 12, 290, 50));
 
         add(panelRound6, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 320, 330, 70));
@@ -155,6 +172,12 @@ public class MenuPrincipal extends javax.swing.JPanel {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Acciones");
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
         panelRound7.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 12, 290, 50));
 
         add(panelRound7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 430, 330, 70));
@@ -170,6 +193,12 @@ public class MenuPrincipal extends javax.swing.JPanel {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Reportes");
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
         panelRound8.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 12, 290, 50));
 
         add(panelRound8, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 430, 330, 70));
@@ -186,6 +215,23 @@ public class MenuPrincipal extends javax.swing.JPanel {
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         app.mostrarMenuCursos();
     }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        app.mostrarMenuInscripciones();
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        r.deshacerUltimaAccion();
+
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        app.mostrarMenuCalificaciones();
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        app.mostrarReportes();
+    }//GEN-LAST:event_jLabel8MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,22 +1,30 @@
 package Estructuras.Diccionario;
 
+import javax.swing.JOptionPane;
+
 /**
  * Clase que representa un diccionario genérico implementado con una tabla hash
- * utilizando listas enlazadas para resolver colisiones (hashing con encadenamiento).
+ * utilizando listas enlazadas para resolver colisiones (hashing con
+ * encadenamiento).
  *
  * @param <K> Tipo de las claves.
  * @param <V> Tipo de los valores asociados a las claves.
- * 
- * Este diccionario permite agregar, eliminar, obtener y mostrar elementos mediante su clave.
- * 
+ *
+ * Este diccionario permite agregar, eliminar, obtener y mostrar elementos
+ * mediante su clave.
+ *
  * @author Sebastian Moreno
  */
 public class DiccionarioGenerico<K, V> {
 
-    /** Tabla hash donde se almacenan los nodos del diccionario. */
+    /**
+     * Tabla hash donde se almacenan los nodos del diccionario.
+     */
     private NodoCurso<K, V>[] tabla;
 
-    /** Tamaño de la tabla hash. */
+    /**
+     * Tamaño de la tabla hash.
+     */
     private int tamaño;
 
     /**
@@ -40,8 +48,8 @@ public class DiccionarioGenerico<K, V> {
     }
 
     /**
-     * Agrega una nueva pareja clave-valor al diccionario.
-     * Si ya existen elementos en la misma posición, se enlazan al final de la lista.
+     * Agrega una nueva pareja clave-valor al diccionario. Si ya existen
+     * elementos en la misma posición, se enlazan al final de la lista.
      *
      * @param clave La clave del nuevo elemento.
      * @param valor El valor asociado a la clave.
@@ -62,8 +70,8 @@ public class DiccionarioGenerico<K, V> {
     }
 
     /**
-     * Elimina un elemento del diccionario dado su clave.
-     * Si la clave no existe, muestra un mensaje indicándolo.
+     * Elimina un elemento del diccionario dado su clave. Si la clave no existe,
+     * muestra un mensaje indicándolo.
      *
      * @param clave La clave del elemento a eliminar.
      */
@@ -94,7 +102,8 @@ public class DiccionarioGenerico<K, V> {
      * Obtiene el valor asociado a una clave específica.
      *
      * @param clave La clave del elemento a obtener.
-     * @return El valor correspondiente a la clave, o {@code null} si no se encuentra.
+     * @return El valor correspondiente a la clave, o {@code null} si no se
+     * encuentra.
      */
     public V obtener(K clave) {
         int indice = obtenerIndice(clave);
@@ -102,25 +111,44 @@ public class DiccionarioGenerico<K, V> {
 
         while (actual != null) {
             if (actual.clave.equals(clave)) {
+                JOptionPane.showMessageDialog(null,
+                        "Curso encontrado:\nClave: " + actual.clave + "\nValor: " + actual.valor,
+                        "Curso Encontrado",
+                        JOptionPane.INFORMATION_MESSAGE);
                 return actual.valor;
             }
             actual = actual.siguiente;
         }
 
-        return null; // No se encontró la clave
+        JOptionPane.showMessageDialog(null,
+                "No se encontró un curso con la clave: " + clave,
+                "Curso no encontrado",
+                JOptionPane.WARNING_MESSAGE);
+
+        return null;
     }
 
     /**
-     * Muestra en consola todos los elementos del diccionario.
-     * Imprime cada pareja clave-valor.
+     * Muestra en consola todos los elementos del diccionario. Imprime cada
+     * pareja clave-valor.
      */
     public void mostrar() {
+        StringBuilder mensaje = new StringBuilder();
+
         for (int i = 0; i < tamaño; i++) {
             NodoCurso<K, V> actual = tabla[i];
             while (actual != null) {
-                System.out.println("Clave: " + actual.clave + ", Valor: " + actual.valor);
+                mensaje.append("Clave: ").append(actual.clave)
+                        .append(", Valor: ").append(actual.valor).append("\n");
                 actual = actual.siguiente;
             }
         }
+
+        if (mensaje.length() == 0) {
+            JOptionPane.showMessageDialog(null, "No hay cursos registrados.");
+        } else {
+            JOptionPane.showMessageDialog(null, mensaje.toString(), "Cursos registrados", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
+
 }

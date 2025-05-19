@@ -4,20 +4,25 @@
  */
 package gui;
 
+import entidades.SolicitudCalificacion;
 import interfaces.RegistroFachada;
+import java.awt.event.KeyEvent;
+import javax.swing.JTextField;
 
 /**
  *
  * @author Sebastian Moreno
  */
-public class Inscripciones extends javax.swing.JPanel {
+public class Calificaciones extends javax.swing.JPanel {
 
     /**
-     * Creates new form Inscripciones
+     * Creates new form Calificaciones
      */
     Aplicacion app;
-    RegistroFachada R = new RegistroFachada();
-    public Inscripciones(Aplicacion app) {
+    RegistroFachada r = new RegistroFachada();
+
+    public Calificaciones(Aplicacion app) {
+
         this.app = app;
         initComponents();
     }
@@ -31,43 +36,60 @@ public class Inscripciones extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelRound6 = new gui.PanelRound();
-        jLabel6 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        idEstudiante = new javax.swing.JTextField();
+        pos = new javax.swing.JTextField();
+        nuevaC = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         panelRound7 = new gui.PanelRound();
         jLabel7 = new javax.swing.JLabel();
         panelRound8 = new gui.PanelRound();
         jLabel8 = new javax.swing.JLabel();
-        idEstudiante = new javax.swing.JTextField();
-        idCurso = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         panelRound9 = new gui.PanelRound();
         jLabel9 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setForeground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelRound6.setBackground(new java.awt.Color(0, 0, 0));
-        panelRound6.setRoundBottomLeft(30);
-        panelRound6.setRoundBottomRight(30);
-        panelRound6.setRoundTopLeft(30);
-        panelRound6.setRoundTopRight(30);
-        panelRound6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jLabel11.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 48)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setText("Menu de Calificiones");
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Mostrar Lista de Espera");
-        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel6MouseClicked(evt);
+        idEstudiante.setText("jTextField1");
+        add(idEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 200, 40));
+
+        pos.setText("jTextField1");
+        pos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                posKeyTyped(evt);
             }
         });
-        panelRound6.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 330, 50));
+        add(pos, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 200, 40));
 
-        add(panelRound6, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 530, 330, 70));
+        nuevaC.setText("jTextField1");
+        nuevaC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nuevaCMouseClicked(evt);
+            }
+        });
+        nuevaC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nuevaCKeyTyped(evt);
+            }
+        });
+        add(nuevaC, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 200, 40));
+
+        jLabel1.setText("nueva calificacion");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, -1, -1));
+
+        jLabel2.setText("idEstudiante");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, -1));
+
+        jLabel3.setText("posicion de el arreglo ");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, -1));
 
         panelRound7.setBackground(new java.awt.Color(0, 0, 0));
         panelRound7.setRoundBottomLeft(30);
@@ -84,7 +106,7 @@ public class Inscripciones extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Inscribir estudiante a Curso");
+        jLabel7.setText("Procesar siguiente solicitud");
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel7MouseClicked(evt);
@@ -92,19 +114,24 @@ public class Inscripciones extends javax.swing.JPanel {
         });
         panelRound7.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 330, 50));
 
-        add(panelRound7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 530, 330, 70));
+        add(panelRound7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 540, 330, 70));
 
         panelRound8.setBackground(new java.awt.Color(0, 0, 0));
         panelRound8.setRoundBottomLeft(30);
         panelRound8.setRoundBottomRight(30);
         panelRound8.setRoundTopLeft(30);
         panelRound8.setRoundTopRight(30);
+        panelRound8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelRound8MouseClicked(evt);
+            }
+        });
         panelRound8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel8.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Mostrar Lista de Inscritos");
+        jLabel8.setText("Enviar solicitud califcacion");
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel8MouseClicked(evt);
@@ -112,24 +139,7 @@ public class Inscripciones extends javax.swing.JPanel {
         });
         panelRound8.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 330, 50));
 
-        add(panelRound8, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 530, 330, 70));
-
-        idEstudiante.setText("jTextField1");
-        add(idEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 240, 350, 70));
-
-        idCurso.setText("jTextField1");
-        add(idCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 360, 70));
-
-        jLabel11.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 48)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel11.setText("Menu de Inscripciones");
-        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
-
-        jLabel1.setText("ID DE EL CURSO");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 190, -1, -1));
-
-        jLabel2.setText("ID DE EL ESTUDIANTE");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, -1, -1));
+        add(panelRound8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 330, 70));
 
         panelRound9.setBackground(new java.awt.Color(0, 0, 0));
         panelRound9.setRoundBottomLeft(30);
@@ -152,40 +162,70 @@ public class Inscripciones extends javax.swing.JPanel {
         add(panelRound9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 120, 40));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-        R.mostrarListaEspera(idCurso.getText());
-    }//GEN-LAST:event_jLabel6MouseClicked
+    private void nuevaCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevaCMouseClicked
+
+    }//GEN-LAST:event_nuevaCMouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-        R.inscribirEstudianteACurso(idEstudiante.getText(), idCurso.getText());
+        r.procesarSiguienteSolicitud();
+
     }//GEN-LAST:event_jLabel7MouseClicked
 
+    private void panelRound7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRound7MouseClicked
+
+    }//GEN-LAST:event_panelRound7MouseClicked
+
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
-        R.mostrarListaInscritos(idCurso.getText());
+        SolicitudCalificacion s = new SolicitudCalificacion(idEstudiante.getText(), Integer.parseInt(pos.getText()), Double.parseDouble(nuevaC.getText()));
+        r.enviarSolicitudCalificacion(s);
     }//GEN-LAST:event_jLabel8MouseClicked
 
-    private void panelRound7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRound7MouseClicked
-    }//GEN-LAST:event_panelRound7MouseClicked
+    private void panelRound8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRound8MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_panelRound8MouseClicked
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
 
         app.mostrarPantallaPrincipal();
     }//GEN-LAST:event_jLabel9MouseClicked
 
+    private void posKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_posKeyTyped
+        char c = evt.getKeyChar();
+        // Solo permite números (0-9) y retroceso
+        if (!Character.isDigit(c) && c != KeyEvent.VK_BACK_SPACE) {
+            evt.consume(); // Ignora la entrada si no es válida
+        }
+    }//GEN-LAST:event_posKeyTyped
+
+    private void nuevaCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nuevaCKeyTyped
+        char c = evt.getKeyChar();
+
+// Permitir solo dígitos, un solo punto y la tecla de retroceso
+        if (!Character.isDigit(c) && c != '.' && c != KeyEvent.VK_BACK_SPACE) {
+            evt.consume(); // Ignora si no es válido
+        }
+
+// Evita múltiples puntos decimales
+        JTextField campo = (JTextField) evt.getSource();
+        if (c == '.' && campo.getText().contains(".")) {
+            evt.consume(); // Ya hay un punto, no permitir otro
+        }
+    }//GEN-LAST:event_nuevaCKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField idCurso;
     private javax.swing.JTextField idEstudiante;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private gui.PanelRound panelRound6;
+    private javax.swing.JTextField nuevaC;
     private gui.PanelRound panelRound7;
     private gui.PanelRound panelRound8;
     private gui.PanelRound panelRound9;
+    private javax.swing.JTextField pos;
     // End of variables declaration//GEN-END:variables
 }

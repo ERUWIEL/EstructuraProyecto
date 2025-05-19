@@ -9,6 +9,7 @@ import Estructuras.ListaEnlazadaCircular.NodoCircularSimple;
 import Estructuras.Pila.PilaGenerica;
 import Exception.EstructuraException;
 import entidades.*;
+import javax.swing.JOptionPane;
 
 /**
  * Clase principal que gestiona el sistema de registro de estudiantes, cursos,
@@ -33,7 +34,7 @@ public class RegistroFachada {
     /**
      * MEtodo constructor de la fachada
      */
-    public RegistroFachada(){
+    public RegistroFachada() {
         arbolEstudiantes = new ArbolBinarioBusqueda();
         diccionarioCursos = new DiccionarioGenerico<>(20);
         //listaEnlazada = new ListaEnlazadaSimple();
@@ -44,7 +45,7 @@ public class RegistroFachada {
     //METODOS SOBRE ESTUDUANTES
     /**
      * Metodo que permite agregar un estudiante a un arbol binario de busqueda
-     * 
+     *
      * @param estudiante
      * @param arbol
      * @throws EstructuraException
@@ -61,12 +62,14 @@ public class RegistroFachada {
         }
         System.out.println("Estudiante registrado exitosamente.");
     }
+
     /**
      * Metodo que permite mostrar la informacion de un estudiante
+     *
      * @param matricula
      * @param arbol
      */
-    public Estudiante mostrarEstudiante(String matricula) throws EstructuraException{
+    public Estudiante mostrarEstudiante(String matricula) throws EstructuraException {
         Estudiante estudiante = arbolEstudiantes.buscarPorMatricula(matricula); // Buscar estudiante en el árbol
         if (estudiante != null) {
             return estudiante;
@@ -75,10 +78,10 @@ public class RegistroFachada {
         }
     }
 
-
     //METODOS SOBRE CURSOS
     /**
      * Metod que permite agregar un curso nuevo en un diccionario generico
+     *
      * @param cursoNuevo
      * @param diccionarioCursos
      */
@@ -86,24 +89,30 @@ public class RegistroFachada {
         diccionarioCursos.agregar(cursoNuevo.getClave(), cursoNuevo); // Agregar curso al diccionario
         System.out.println("Curso agregado con éxito.");
     }
+
     /**
      * Metodo que permite eliminar un curso existente
+     *
      * @param claveEliminar
      * @param diccionarioCursos
      */
     public void eliminarCurso(String claveEliminar) {
         diccionarioCursos.eliminar(claveEliminar); // Eliminar el curso del diccionario
     }
+
     /**
      * Metodo que permite consultar los cursos deisponibles
+     *
      * @param diccionarioCursos
      */
     public void listarCursos() {
         System.out.println("Listado de todos los cursos registrados:");
         diccionarioCursos.mostrar(); // Mostrar todos los cursos en el diccionario
     }
+
     /**
      * metodo que permite inscribir un estudiante a un curso
+     *
      * @param matricula
      * @param claveCurso
      */
@@ -111,7 +120,7 @@ public class RegistroFachada {
         Estudiante estudiante = arbolEstudiantes.buscarPorMatricula(matricula);
         Curso curso = diccionarioCursos.obtener(claveCurso);
 
-        if (estudiante== null) {
+        if (estudiante == null) {
             System.out.println("Estudiante no encontrado.");
             return;
         }
@@ -129,7 +138,6 @@ public class RegistroFachada {
             curso.inscribirEstudiante(estudiante); // Agregar estudiante a lista de espera si no hay cupo
         }
     }
-
 
     public void mostrarListaInscritos(String clave) {
         Curso curso = diccionarioCursos.obtener(clave); // Obtener curso por clave
@@ -192,15 +200,15 @@ public class RegistroFachada {
         System.out.println("Solicitud agregada a la lista de espera.");
     }
 
-    // Procesar siguiente solicitud
     public void procesarSiguienteSolicitud() {
         if (colaSolicitudes.estaVacia()) {
-            System.out.println("No hay solicitudes en espera.");
+            JOptionPane.showMessageDialog(null, "No hay solicitudes en espera.", "Procesar Solicitud", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
         SolicitudCalificacion solicitud = colaSolicitudes.desencolar();
         Estudiante estudiante = arbolEstudiantes.buscarPorMatricula(solicitud.getMatriculaEstudiante());
+
         if (estudiante != null) {
             double calificacionAnterior;
             if (solicitud.getIndiceCalificacion() < estudiante.getCalificaciones().size()) {
@@ -208,57 +216,62 @@ public class RegistroFachada {
             } else {
                 calificacionAnterior = 0.0;
             }
+
             Accion accion = new Accion(Accion.Tipo.CALIFICACION, calificacionAnterior, solicitud);
             pilaAcciones.apilar(accion);
             estudiante.actualizarCalificacion(solicitud.getIndiceCalificacion(), solicitud.getNuevaCalificacion());
-            System.out.println("Calificación actualizada para el estudiante: " + estudiante.getNombreCompleto());
-            System.out.println("Calificaciones actuales: " + estudiante.getCalificaciones());
+
+            String mensaje = "Calificación actualizada para el estudiante: " + estudiante.getNombreCompleto()
+                    + "\nCalificaciones actuales: " + estudiante.getCalificaciones();
+            JOptionPane.showMessageDialog(null, mensaje, "Solicitud Procesada", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            System.out.println("Estudiante no encontrado.");
+            JOptionPane.showMessageDialog(null, "Estudiante no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     public void deshacerUltimaAccion() {
         if (pilaAcciones.esVacia()) {
-            System.out.println("No hay acciones para deshacer.");
+            JOptionPane.showMessageDialog(null, "No hay acciones para deshacer.", "Deshacer", JOptionPane.WARNING_MESSAGE);
             return;
         }
+
         Accion accion = pilaAcciones.desapilar();
+        String mensaje = "";
+
         switch (accion.getTipo()) {
             case REGISTRO:
                 Estudiante estudiante = (Estudiante) accion.getDatoActual();
                 arbolEstudiantes.eliminar(estudiante);
-                System.out.println("Registro deshecho: estudiante eliminado (" + estudiante.getNombreCompleto() + ")");
+                mensaje = "Registro deshecho:\nEstudiante eliminado: " + estudiante.getNombreCompleto();
                 break;
+
             case INSCRIPCION:
-                // Eliminar inscripción
                 Estudiante estudiant = (Estudiante) accion.getDatoActual();
-                // Aquí debes buscar el curso correspondiente y eliminar al estudiante
-                // curso.eliminarInscripcion(estudiante);
-                System.out.println("Inscripción deshecha para: " + estudiant.getNombreCompleto());
+                // curso.eliminarInscripcion(estudiant);
+                mensaje = "Inscripción deshecha para el estudiante:\n" + estudiant.getNombreCompleto();
                 break;
+
             case CALIFICACION:
-                // Restaurar calificación previa
-                // datoAnterior: calificación anterior (Double)
-                // datoActual: objeto SolicitudCalificacion o datos para identificar estudiante
-                // e índice
                 if (accion.getDatoActual() instanceof SolicitudCalificacion) {
                     SolicitudCalificacion solicitud = (SolicitudCalificacion) accion.getDatoActual();
                     Estudiante est = arbolEstudiantes.buscarPorMatricula(solicitud.getMatriculaEstudiante());
                     if (est != null) {
                         est.actualizarCalificacion(solicitud.getIndiceCalificacion(),
                                 (Double) accion.getDatoAnterior());
-                        System.out.println("Calificación restaurada para el estudiante: " + est.getNombreCompleto());
+                        mensaje = "Calificación restaurada para:\n" + est.getNombreCompleto();
                     } else {
-                        System.out.println("No se encontró el estudiante para restaurar la calificación.");
+                        mensaje = "No se encontró el estudiante para restaurar la calificación.";
                     }
                 } else {
-                    System.out.println("No se pudo restaurar la calificación (información insuficiente).");
+                    mensaje = "No se pudo restaurar la calificación (información insuficiente).";
                 }
                 break;
+
             default:
-                System.out.println("Tipo de acción no soportado para deshacer.");
+                mensaje = "Tipo de acción no soportado para deshacer.";
         }
+
+        JOptionPane.showMessageDialog(null, mensaje, "Acción Deshecha", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void reportePromedios() {
@@ -269,8 +282,9 @@ public class RegistroFachada {
     }
 
     private void recorrerEInsertarPromedios(Object nodo, ArbolAVL avl) {
-        if (nodo == null)
+        if (nodo == null) {
             return;
+        }
         // Suponiendo que tu nodo del árbol binario tiene los campos: estudiante,
         // izquierda, derecha
         try {

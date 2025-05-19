@@ -37,6 +37,9 @@ public class Direccion {
         this.ciudad = ciudad;
     }
 
+    public Direccion() {
+    }
+
     /** @return El nombre de la calle. */
     public String getCalle() {
         return calle;

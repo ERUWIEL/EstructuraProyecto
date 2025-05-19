@@ -8,6 +8,7 @@ import entidades.Curso;
 import entidades.Direccion;
 import entidades.Estudiante;
 import interfaces.RegistroFachada;
+import java.awt.event.KeyEvent;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,19 +16,18 @@ import javax.swing.table.DefaultTableModel;
  * @author Sebastian Moreno
  */
 public class MenuCursos extends javax.swing.JPanel {
-    
+
     /**
      * Creates new form MenuCursos
      */
-    
     Aplicacion app;
     RegistroFachada R = new RegistroFachada();
+
     public MenuCursos(Aplicacion app) {
         this.app = app;
         initComponents();
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,6 +52,7 @@ public class MenuCursos extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         panelRound7 = new gui.PanelRound();
         jLabel8 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -74,7 +75,7 @@ public class MenuCursos extends javax.swing.JPanel {
         });
         panelRound4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 290, 50));
 
-        add(panelRound4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 330, 70));
+        add(panelRound4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, 330, 70));
 
         panelRound5.setBackground(new java.awt.Color(0, 0, 0));
         panelRound5.setRoundBottomLeft(30);
@@ -94,7 +95,7 @@ public class MenuCursos extends javax.swing.JPanel {
         });
         panelRound5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 290, 50));
 
-        add(panelRound5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 330, 70));
+        add(panelRound5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 330, 70));
 
         panelRound6.setBackground(new java.awt.Color(0, 0, 0));
         panelRound6.setRoundBottomLeft(30);
@@ -122,9 +123,19 @@ public class MenuCursos extends javax.swing.JPanel {
                 iCantidadMouseClicked(evt);
             }
         });
+        iCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                iCantidadKeyTyped(evt);
+            }
+        });
         add(iCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 200, 40));
 
         iIDCurso.setText("jTextField1");
+        iIDCurso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                iIDCursoKeyTyped(evt);
+            }
+        });
         add(iIDCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 200, 40));
 
         iNombre.setText("jTextField1");
@@ -161,14 +172,19 @@ public class MenuCursos extends javax.swing.JPanel {
         panelRound7.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 80, 20));
 
         add(panelRound7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 120, 40));
+
+        jLabel11.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 48)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setText("Menu de Cursos");
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        
+
         Curso c = new Curso(iIDCurso.getText(), iNombre.getText(), Integer.parseInt(iCantidad.getText()));
         R.agregarCurso(c);
-        
-      
+
+
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
@@ -188,12 +204,25 @@ public class MenuCursos extends javax.swing.JPanel {
         app.mostrarPantallaPrincipal();
     }//GEN-LAST:event_jLabel8MouseClicked
 
+    private void iCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_iCantidadKeyTyped
+        char c = evt.getKeyChar();
+        // Solo permite números (0-9) y retroceso
+        if (!Character.isDigit(c) && c != KeyEvent.VK_BACK_SPACE) {
+            evt.consume(); // Ignora la entrada si no es válida
+        }
+    }//GEN-LAST:event_iCantidadKeyTyped
+
+    private void iIDCursoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_iIDCursoKeyTyped
+
+    }//GEN-LAST:event_iIDCursoKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField iCantidad;
     private javax.swing.JTextField iIDCurso;
     private javax.swing.JTextField iNombre;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

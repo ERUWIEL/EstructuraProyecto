@@ -20,9 +20,9 @@ public class PantallaEstudiantes extends javax.swing.JPanel {
     /**
      * Creates new form PantallaEstudiantes
      */
-    
     Aplicacion app;
-    RegistroFachada r = new RegistroFachada() ;
+    RegistroFachada r = new RegistroFachada();
+
     public PantallaEstudiantes(Aplicacion app) {
         this.app = app;
         initComponents();
@@ -104,9 +104,9 @@ public class PantallaEstudiantes extends javax.swing.JPanel {
                 jLabel4MouseClicked(evt);
             }
         });
-        panelRound4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 100, 50));
+        panelRound4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 80, 20));
 
-        add(panelRound4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 130, 140, 70));
+        add(panelRound4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 120, 40));
 
         iCorreo.setText("jTextField1");
         add(iCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 200, 40));
@@ -199,19 +199,19 @@ public class PantallaEstudiantes extends javax.swing.JPanel {
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         try {
-            Estudiante  e = r.mostrarEstudiante(iMatricula1.getText());
-            
+            Estudiante e = r.mostrarEstudiante(iMatricula1.getText());
+
             estudianteEncontrado.setText("Estudiante encontrado : " + e);
             estudianteEncontrado.setVisible(true);
         } catch (EstructuraException ex) {
             Logger.getLogger(PantallaEstudiantes.class.getName()).log(Level.SEVERE, null, ex);
         }
-         
+
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        
-  app.mostrarPantallaPrincipal();
+
+        app.mostrarPantallaPrincipal();
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void iMatriculaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iMatriculaMouseClicked
@@ -219,7 +219,33 @@ public class PantallaEstudiantes extends javax.swing.JPanel {
     }//GEN-LAST:event_iMatriculaMouseClicked
 
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
-        // TODO add your handling code here:
+      // Crear fachada
+    RegistroFachada r = new RegistroFachada();
+
+    // Crear y llenar el objeto Dirección
+    Direccion direccion = new Direccion();
+    direccion.setCalle(iCalle.getText());
+    direccion.setNumero(iNumero.getText());
+    direccion.setColonia(iColonia.getText());
+    direccion.setCiudad(iCiudad.getText());
+
+    // Crear y llenar el objeto Estudiante
+    Estudiante e = new Estudiante();
+    e.setNombreCompleto(iNomrbe.getText());
+    e.setTelefono(iTelefono.getText());
+    e.setMatricula(iMatricula.getText());
+    e.setCorreoElectronico(iCorreo.getText());
+    e.setDireccion(direccion);
+
+        try {
+            // Registrar al estudiante
+            r.registrarEstudiante(e);
+        } catch (EstructuraException ex) {
+            Logger.getLogger(PantallaEstudiantes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    // Mensaje visual (opcional)
+    estudianteEncontrado.setText("Estudiante registrado correctamente");
     }//GEN-LAST:event_jLabel13MouseClicked
 
 

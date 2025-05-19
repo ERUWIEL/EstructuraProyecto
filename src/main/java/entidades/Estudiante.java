@@ -156,10 +156,10 @@ public class Estudiante {
     @Override
     public String toString() {
         return 
-                "matricula=" + matricula +
-                ", nombreCompleto=" + nombreCompleto +
-                ", telefono=" + telefono +
-                ", correoElectronico=" + correoElectronico +
-                ", direccion=" + direccion;
+                 matricula +
+                "," + nombreCompleto +
+                "," + telefono +
+                "," + correoElectronico +
+                "," + direccion;
     }
 }
