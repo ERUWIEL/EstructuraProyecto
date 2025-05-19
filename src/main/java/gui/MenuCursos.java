@@ -37,6 +37,7 @@ public class MenuCursos extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
         panelRound4 = new gui.PanelRound();
         jLabel4 = new javax.swing.JLabel();
         panelRound5 = new gui.PanelRound();
@@ -53,6 +54,10 @@ public class MenuCursos extends javax.swing.JPanel {
         panelRound7 = new gui.PanelRound();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+
+        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -139,17 +144,24 @@ public class MenuCursos extends javax.swing.JPanel {
         add(iIDCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 200, 40));
 
         iNombre.setText("jTextField1");
-        add(iNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 200, 40));
+        add(iNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 200, 40));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Cantidad");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("id curso");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Nombre");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, -1, -1));
 
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Se muestra en consola lol.");
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 300, -1, -1));
 
@@ -174,9 +186,14 @@ public class MenuCursos extends javax.swing.JPanel {
         add(panelRound7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 120, 40));
 
         jLabel11.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 48)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Menu de Cursos");
         add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
+
+        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 90));
+
+        jPanel3.setBackground(new java.awt.Color(0, 102, 102));
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1000, 510));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
@@ -230,6 +247,9 @@ public class MenuCursos extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private gui.PanelRound panelRound4;
     private gui.PanelRound panelRound5;
     private gui.PanelRound panelRound6;

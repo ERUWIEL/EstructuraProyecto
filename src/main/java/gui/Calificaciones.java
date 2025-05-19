@@ -49,17 +49,18 @@ public class Calificaciones extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         panelRound9 = new gui.PanelRound();
         jLabel9 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel11.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 48)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Menu de Calificiones");
         add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
 
         idEstudiante.setText("jTextField1");
-        add(idEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 200, 40));
+        add(idEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 130, 200, 40));
 
         pos.setText("jTextField1");
         pos.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -67,7 +68,7 @@ public class Calificaciones extends javax.swing.JPanel {
                 posKeyTyped(evt);
             }
         });
-        add(pos, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 200, 40));
+        add(pos, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 200, 200, 40));
 
         nuevaC.setText("jTextField1");
         nuevaC.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -80,16 +81,22 @@ public class Calificaciones extends javax.swing.JPanel {
                 nuevaCKeyTyped(evt);
             }
         });
-        add(nuevaC, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 200, 40));
+        add(nuevaC, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 260, 200, 40));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("nueva calificacion");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("idEstudiante");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 140, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("posicion de el arreglo ");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, -1, -1));
 
         panelRound7.setBackground(new java.awt.Color(0, 0, 0));
         panelRound7.setRoundBottomLeft(30);
@@ -114,7 +121,7 @@ public class Calificaciones extends javax.swing.JPanel {
         });
         panelRound7.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 330, 50));
 
-        add(panelRound7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 540, 330, 70));
+        add(panelRound7, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 430, 330, 70));
 
         panelRound8.setBackground(new java.awt.Color(0, 0, 0));
         panelRound8.setRoundBottomLeft(30);
@@ -139,7 +146,7 @@ public class Calificaciones extends javax.swing.JPanel {
         });
         panelRound8.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 330, 50));
 
-        add(panelRound8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 330, 70));
+        add(panelRound8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 430, 330, 70));
 
         panelRound9.setBackground(new java.awt.Color(0, 0, 0));
         panelRound9.setRoundBottomLeft(30);
@@ -160,6 +167,12 @@ public class Calificaciones extends javax.swing.JPanel {
         panelRound9.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 80, 20));
 
         add(panelRound9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 120, 40));
+
+        jPanel2.setBackground(new java.awt.Color(0, 204, 204));
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 90));
+
+        jPanel3.setBackground(new java.awt.Color(0, 102, 102));
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1150, 610));
     }// </editor-fold>//GEN-END:initComponents
 
     private void nuevaCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevaCMouseClicked
@@ -222,6 +235,8 @@ public class Calificaciones extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField nuevaC;
     private gui.PanelRound panelRound7;
     private gui.PanelRound panelRound8;

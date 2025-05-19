@@ -47,6 +47,9 @@ public class MenuPrincipal extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         panelRound8 = new gui.PanelRound();
         jLabel8 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -73,7 +76,6 @@ public class MenuPrincipal extends javax.swing.JPanel {
         add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 560, 270, 70));
 
         jLabel1.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Menu Escolar");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, -1));
 
@@ -202,6 +204,16 @@ public class MenuPrincipal extends javax.swing.JPanel {
         panelRound8.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 12, 290, 50));
 
         add(panelRound8, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 430, 330, 70));
+
+        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 110));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondo.jpg"))); // NOI18N
+        jLabel9.setText("jLabel9");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, 600, -1));
+
+        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 1150, 590));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
@@ -243,6 +255,9 @@ public class MenuPrincipal extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private gui.PanelRound panelRound2;
     private gui.PanelRound panelRound3;
     private gui.PanelRound panelRound4;

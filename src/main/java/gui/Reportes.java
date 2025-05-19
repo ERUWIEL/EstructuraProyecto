@@ -40,12 +40,13 @@ public class Reportes extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         panelRound9 = new gui.PanelRound();
         jLabel9 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel11.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 48)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Menu de Reportes");
         add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
 
@@ -72,7 +73,7 @@ public class Reportes extends javax.swing.JPanel {
         });
         panelRound8.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 510, 50));
 
-        add(panelRound8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 580, 520, 70));
+        add(panelRound8, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 280, 520, 70));
 
         panelRound7.setBackground(new java.awt.Color(0, 0, 0));
         panelRound7.setRoundBottomLeft(30);
@@ -95,9 +96,9 @@ public class Reportes extends javax.swing.JPanel {
                 jLabel7MouseClicked(evt);
             }
         });
-        panelRound7.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 330, 50));
+        panelRound7.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 330, 50));
 
-        add(panelRound7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 490, 330, 70));
+        add(panelRound7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 330, 70));
 
         idCurso.setText("jTextField1");
         idCurso.addActionListener(new java.awt.event.ActionListener() {
@@ -105,10 +106,10 @@ public class Reportes extends javax.swing.JPanel {
                 idCursoActionPerformed(evt);
             }
         });
-        add(idCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 360, 70));
+        add(idCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, 360, 70));
 
         jLabel1.setText("id de la clase");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 130, -1, -1));
 
         panelRound9.setBackground(new java.awt.Color(0, 0, 0));
         panelRound9.setRoundBottomLeft(30);
@@ -129,6 +130,12 @@ public class Reportes extends javax.swing.JPanel {
         panelRound9.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 80, 20));
 
         add(panelRound9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 120, 40));
+
+        jPanel2.setBackground(new java.awt.Color(0, 204, 204));
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 90));
+
+        jPanel3.setBackground(new java.awt.Color(0, 102, 102));
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1020, 610));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
@@ -164,6 +171,8 @@ public class Reportes extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private gui.PanelRound panelRound7;
     private gui.PanelRound panelRound8;
     private gui.PanelRound panelRound9;

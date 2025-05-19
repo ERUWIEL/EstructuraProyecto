@@ -44,6 +44,8 @@ public class Inscripciones extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         panelRound9 = new gui.PanelRound();
         jLabel9 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -121,13 +123,16 @@ public class Inscripciones extends javax.swing.JPanel {
         add(idCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 360, 70));
 
         jLabel11.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 48)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Menu de Inscripciones");
         add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("ID DE EL CURSO");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 190, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("ID DE EL ESTUDIANTE");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, -1, -1));
 
@@ -150,6 +155,13 @@ public class Inscripciones extends javax.swing.JPanel {
         panelRound9.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 80, 20));
 
         add(panelRound9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 120, 40));
+
+        jPanel2.setBackground(new java.awt.Color(0, 204, 204));
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 90));
+
+        jPanel3.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel3.setForeground(new java.awt.Color(255, 255, 255));
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1150, 620));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
@@ -183,6 +195,8 @@ public class Inscripciones extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private gui.PanelRound panelRound6;
     private gui.PanelRound panelRound7;
     private gui.PanelRound panelRound8;

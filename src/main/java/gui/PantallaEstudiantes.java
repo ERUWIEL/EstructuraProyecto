@@ -38,6 +38,7 @@ public class PantallaEstudiantes extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         panelRound3 = new gui.PanelRound();
         jLabel3 = new javax.swing.JLabel();
         panelRound4 = new gui.PanelRound();
@@ -64,6 +65,10 @@ public class PantallaEstudiantes extends javax.swing.JPanel {
         estudianteEncontrado = new javax.swing.JLabel();
         panelRound5 = new gui.PanelRound();
         jLabel13 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+
+        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -120,15 +125,23 @@ public class PantallaEstudiantes extends javax.swing.JPanel {
         iTelefono.setText("jTextField1");
         add(iTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 200, 40));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Correo Electronico");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Ciudad");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, -1, -1));
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Nombre");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, -1));
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Telefono");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, -1));
 
@@ -140,15 +153,23 @@ public class PantallaEstudiantes extends javax.swing.JPanel {
         });
         add(iMatricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 200, 40));
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Matricula");
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 310, -1, -1));
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Calle");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, -1, -1));
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Numero");
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, -1, -1));
 
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Colonia");
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, -1, -1));
 
@@ -162,17 +183,19 @@ public class PantallaEstudiantes extends javax.swing.JPanel {
         add(iColonia, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, 200, 40));
 
         jLabel11.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 48)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Menu de Estudiantes");
         add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
 
         iMatricula1.setText("jTextField1");
         add(iMatricula1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 370, 200, 40));
 
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Matricula");
         add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, -1));
 
-        estudianteEncontrado.setForeground(new java.awt.Color(0, 0, 0));
+        estudianteEncontrado.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        estudianteEncontrado.setForeground(new java.awt.Color(255, 255, 255));
         estudianteEncontrado.setText("Estudiante encontrado : ");
         add(estudianteEncontrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 520, -1, -1));
 
@@ -195,6 +218,12 @@ public class PantallaEstudiantes extends javax.swing.JPanel {
         panelRound5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 290, 50));
 
         add(panelRound5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 580, 330, 70));
+
+        jPanel2.setBackground(new java.awt.Color(0, 204, 204));
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 90));
+
+        jPanel3.setBackground(new java.awt.Color(0, 102, 102));
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1100, 600));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
@@ -273,6 +302,9 @@ public class PantallaEstudiantes extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private gui.PanelRound panelRound3;
     private gui.PanelRound panelRound4;
     private gui.PanelRound panelRound5;
