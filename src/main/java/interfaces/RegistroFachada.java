@@ -49,7 +49,7 @@ public class RegistroFachada {
      * @param arbol
      * @throws EstructuraException
      */
-    public static void registrarEstudiante(Estudiante estudiante)
+    public void registrarEstudiante(Estudiante estudiante)
             throws EstructuraException {
         try {
             arbolEstudiantes.insertar(estudiante); // Insertar estudiante en el árbol
@@ -67,7 +67,7 @@ public class RegistroFachada {
      * @param matricula
      * @param arbol
      */
-    public static void mostrarEstudiante(String matricula) {
+    public void mostrarEstudiante(String matricula) {
         Estudiante estudiante = arbolEstudiantes.buscarPorMatricula(matricula); // Buscar estudiante en el árbol
         if (estudiante != null) {
             System.out.println("=== Estudiante encontrado ===");
@@ -84,7 +84,7 @@ public class RegistroFachada {
      * @param cursoNuevo
      * @param diccionarioCursos
      */
-    public static void agregarCurso(Curso cursoNuevo) {
+    public void agregarCurso(Curso cursoNuevo) {
         diccionarioCursos.agregar(cursoNuevo.getClave(), cursoNuevo); // Agregar curso al diccionario
         System.out.println("Curso agregado con éxito.");
     }
@@ -93,14 +93,14 @@ public class RegistroFachada {
      * @param claveEliminar
      * @param diccionarioCursos
      */
-    public static void eliminarCurso(String claveEliminar) {
+    public void eliminarCurso(String claveEliminar) {
         diccionarioCursos.eliminar(claveEliminar); // Eliminar el curso del diccionario
     }
     /**
      * Metodo que permite consultar los cursos deisponibles
      * @param diccionarioCursos
      */
-    public static void listarCursos() {
+    public void listarCursos() {
         System.out.println("Listado de todos los cursos registrados:");
         diccionarioCursos.mostrar(); // Mostrar todos los cursos en el diccionario
     }
@@ -109,7 +109,7 @@ public class RegistroFachada {
      * @param matricula
      * @param claveCurso
      */
-    public static void inscribirEstudianteACurso(String matricula, String claveCurso) {
+    public void inscribirEstudianteACurso(String matricula, String claveCurso) {
         Estudiante estudiante = arbolEstudiantes.buscarPorMatricula(matricula);
         Curso curso = diccionarioCursos.obtener(claveCurso);
 
@@ -133,7 +133,7 @@ public class RegistroFachada {
     }
 
 
-    public static void mostrarListaInscritos(String clave) {
+    public void mostrarListaInscritos(String clave) {
         Curso curso = diccionarioCursos.obtener(clave); // Obtener curso por clave
         if (curso != null) {
             System.out.println("Estudiantes inscritos:");
@@ -143,7 +143,7 @@ public class RegistroFachada {
         }
     }
 
-    public static void mostrarListaEspera(String clave) {
+    public void mostrarListaEspera(String clave) {
         Curso curso = diccionarioCursos.obtener(clave); // Obtener curso por clave
         if (curso != null) {
             System.out.println("Lista de espera:");
@@ -154,7 +154,7 @@ public class RegistroFachada {
     }
 
     // Metodo para rotar el rol en la clase
-    public static void rotarRol(String clave) {
+    public void rotarRol(String clave) {
         Curso curso = diccionarioCursos.obtener(clave);
         CircularSimple<Estudiante> listaEstudiantesConRol = curso.getListaConRoles();
 
@@ -189,13 +189,13 @@ public class RegistroFachada {
     }
 
     // Enviar solicitud de calificación
-    public static void enviarSolicitudCalificacion(SolicitudCalificacion solicitud) {
+    public void enviarSolicitudCalificacion(SolicitudCalificacion solicitud) {
         colaSolicitudes.encolar(solicitud);
         System.out.println("Solicitud agregada a la lista de espera.");
     }
 
     // Procesar siguiente solicitud
-    public static void procesarSiguienteSolicitud() {
+    public void procesarSiguienteSolicitud() {
         if (colaSolicitudes.estaVacia()) {
             System.out.println("No hay solicitudes en espera.");
             return;
@@ -220,7 +220,7 @@ public class RegistroFachada {
         }
     }
 
-    public static void deshacerUltimaAccion() {
+    public void deshacerUltimaAccion() {
         if (pilaAcciones.esVacia()) {
             System.out.println("No hay acciones para deshacer.");
             return;
@@ -263,14 +263,14 @@ public class RegistroFachada {
         }
     }
 
-    public static void reportePromedios() {
+    public void reportePromedios() {
         ArbolAVL avl = new ArbolAVL();
         recorrerEInsertarPromedios(arbolEstudiantes.getRaiz(), avl);
         System.out.println("Estudiantes ordenados por promedio:");
         avl.imprimirInOrden();
     }
 
-    private static void recorrerEInsertarPromedios(Object nodo, ArbolAVL avl) {
+    private void recorrerEInsertarPromedios(Object nodo, ArbolAVL avl) {
         if (nodo == null)
             return;
         // Suponiendo que tu nodo del árbol binario tiene los campos: estudiante,
