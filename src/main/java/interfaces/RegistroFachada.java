@@ -49,8 +49,7 @@ public class RegistroFachada {
      * @param arbol
      * @throws EstructuraException
      */
-    public void registrarEstudiante(Estudiante estudiante)
-            throws EstructuraException {
+    public void registrarEstudiante(Estudiante estudiante) throws EstructuraException {
         try {
             arbolEstudiantes.insertar(estudiante); // Insertar estudiante en el árbol
             // Registrar la acción en la pila
@@ -67,13 +66,12 @@ public class RegistroFachada {
      * @param matricula
      * @param arbol
      */
-    public void mostrarEstudiante(String matricula) {
+    public Estudiante mostrarEstudiante(String matricula) throws EstructuraException{
         Estudiante estudiante = arbolEstudiantes.buscarPorMatricula(matricula); // Buscar estudiante en el árbol
         if (estudiante != null) {
-            System.out.println("=== Estudiante encontrado ===");
-            System.out.println(estudiante);
+            return estudiante;
         } else {
-            System.out.println("Estudiante no encontrado.");
+            throw new EstructuraException("estudiante no encontrado");
         }
     }
 
